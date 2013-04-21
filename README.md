@@ -1,0 +1,4 @@
+calibre
+=======
+
+calibre RSS addon
