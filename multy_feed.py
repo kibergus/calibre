@@ -383,3 +383,7 @@ class MultiFeedRecipe(AutomaticNewsRecipe):
             else:
                 self.populate_article_metadata(article, ans, first_fetch)
         return ans
+
+    def default_cover(self, cover_file):
+        # Default cover weights too much
+        pass
