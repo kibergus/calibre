@@ -145,6 +145,7 @@ class RichRecursiveFetcher(RecursiveFetcher):
                         break
 
                     tag['src'] = imgpath
+                    break
 
 #================ end of patched RecursiveFetcher ====================
 
