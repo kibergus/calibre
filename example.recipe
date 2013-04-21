@@ -1,0 +1,32 @@
+from calibre.web.feeds.multy_feed import MultiFeedRecipe
+from calibre.web.feeds.feed_settings import *
+
+class ConcreteMuliFeedRecipe(MultiFeedRecipe):
+#    cover_url = "http://example.com/rss.jpg"
+#    masthead_url = "http://example.com/files/rss.jpg"
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!
+# TODO: Adjust this setting!!!
+    download_history_file = "/home/user/kindle/history"
+
+    oldest_article = 7
+    max_articles_per_feed = 5
+
+    feeds          = [
+        ('IT happens', 'http://ithappens.ru/rss/'),
+        ('xkcd', 'http://xkcd.com/rss.xml'),
+        ('What If', 'http://what-if.xkcd.com/feed.atom'),
+        ('Linux.org.ru', 'http://feeds.feedburner.com/org/LOR'),
+# TODO: Adjust feed URL
+#        ('Habrahabr', 'http://example.com/rss_feed.php'),
+        ('Kommersant', 'http://dynamic.feedsportal.com/pf/438800/http://feeds.kommersant.ru/RSS_Export/RU/daily.xml'),
+    ]
+
+    feed_settings = {
+        'xkcd' : FeedXKCDSettings(),
+        'IT happens' : FeedFetchSettings(),
+        'Linux.org.ru' : FeedFetchSettings(),
+        'What If' : FeedWhatIfSettings(),
+        'Habrahabr' : FeedHabrahabrSettings(),
+        'Kommersant' : FeedKommersantSettings(),
+    }
