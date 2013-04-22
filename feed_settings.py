@@ -57,7 +57,13 @@ class FeedKommersantSettings(FeedFetchSettings):
         return "http://www.kommersant.ru/pda/news.html?id={0}".format(id)
 
     def postprocess_html(self, soup, first_fetch):
-        content = soup.find("kimg")
+        for tag in soup.findAll("td"):
+            if tag.get("class", None) == "issues":
+                content = tag
+                break
+        else:
+            content = soup.body
+
         more_link = content.find("a", attrs={"class" : "more"})
         if more_link is not None:
             more_link.parent.extract()
