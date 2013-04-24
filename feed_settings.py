@@ -37,7 +37,14 @@ class FeedHabrahabrSettings(FeedFetchSettings):
         return recipe.fetch_article(url, *args)
 
     def print_version_url(self, url):
-        return "http://m." + url[len("http://"):]
+        if "company" in url:
+            # There is no mobile version under company blog
+            # but the article can be foundunder usual address
+            # http://habrahabr.ru/company/<name>/blog/<id>/
+            post_id = url.split("/")[6]
+            return "http://m.habrahabr.ru/post/{0}/".format(post_id)
+        else:
+            return "http://m." + url[len("http://"):]
 
     def postprocess_html(self, soup, first_fetch):
         soup.find("div", attrs={"class" : "tm"}).extract()
